@@ -3,7 +3,7 @@ services:
     build: ./app
     env_file: 'example.env'
     ports:
-      - "8501:8501"
+      - "8050:8050"
       - depends_on:
         - llm
   llm:
