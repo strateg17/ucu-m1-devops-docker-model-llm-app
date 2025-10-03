@@ -12,4 +12,4 @@ COPY ..
 
 # Set default command
 ENTRYPOINT ["streamlit", "run", "main.py"]
-#CMD ["streamlit", "run", "main.py"]
+CMD ["--server.port=8050", "--server.address=0.0.0.0"]
