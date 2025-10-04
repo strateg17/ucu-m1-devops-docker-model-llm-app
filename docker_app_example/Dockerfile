@@ -8,7 +8,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the app code
-COPY ..
+COPY . ./
 
 # Set default command
 ENTRYPOINT ["streamlit", "run", "main.py"]

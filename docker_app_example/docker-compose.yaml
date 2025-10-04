@@ -1,0 +1,25 @@
+services:
+  ai-app:
+    build:
+      context: . # we are using the current directory
+      dockerfile: Dockerfile # Expclicitly points to the Dockerfile name
+    volumes:
+      - ./:/app
+    ports:
+      - "8050:8050"
+    container_name: streamlit-app
+    env_file:
+      - .env
+    environment:
+      - LOCAL_BASE_URL
+      - LOCAL_MODEL_NAME
+    depends_on:
+      - llm
+    restart: unless-stopped
+
+  llm:
+    provider:
+      type: model
+      options:
+        model: ai/smollm2:latest
+    restart: unless-stopped
