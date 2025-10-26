@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llm-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llm-ui
+  template:
+    metadata:
+      labels:
+        app: llm-ui
+    spec:
+      containers:
+        - name: ui
+          image: llm-app:latest     # твій UI образ
+          ports:
+            - containerPort: 8050          # або 8501 — залежно від порту
+          env:
+            - name: MODEL_ENDPOINT
+              value: "http://llm-model-svc:12434"
+            - name: MODEL_NAME
+              value: "ai/smollm2:latest"

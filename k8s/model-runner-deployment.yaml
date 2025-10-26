@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-runner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: model-runner
+  template:
+    metadata:
+      labels:
+        app: model-runner
+    spec:
+      containers:
+      - name: model-runner
+        image: ai/smollm2:latest   # <- заміни на образ, який реально запускає DMR-сервіс
+        imagePullPolicy: IfNotPresent   # або Never, якщо образ локальний
+        ports:
+        - containerPort: 12434          # порт за замовчуванням DMR
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "1Gi"

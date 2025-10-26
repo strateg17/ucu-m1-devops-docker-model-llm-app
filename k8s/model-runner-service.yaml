@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: llm-model-svc
+spec:
+  selector:
+    app: llm-model
+  ports:
+    - port: 13434
+      targetPort: 13434
+  type: ClusterIP
